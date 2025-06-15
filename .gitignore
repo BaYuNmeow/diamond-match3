@@ -1,0 +1,18 @@
+# Unity
+/[Ll]ibrary/
+/[Tt]emp/
+/[Oo]bj/
+/[Ll]ogs/
+/[Uu]ser[Ss]ettings/
+/.vs/
+/.vsconfig
+
+# IDE
+*.sln
+*.csproj
+*.suo
+*.userprefs
+
+# Билды
+/Build/
+/Builds/

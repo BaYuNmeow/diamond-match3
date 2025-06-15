@@ -1,0 +1,50 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13957d07756d02a41bcc5acd164eb4de, type: 3}
+  m_Name: Level 16
+  m_EditorClassIdentifier: 
+  width: 3
+  height: 7
+  boardLayout:
+  - x: 0
+    y: 0
+    tileKind: 1
+  - x: 2
+    y: 0
+    tileKind: 1
+  - x: 0
+    y: 6
+    tileKind: 1
+  - x: 2
+    y: 6
+    tileKind: 1
+  dots:
+  - {fileID: 6996967954150883544, guid: d60a6fad14314be47adad9f461246ed9, type: 3}
+  - {fileID: 1205637732480677275, guid: da8e33ed73e05724991127103fb0db1f, type: 3}
+  - {fileID: 1740247406401458518, guid: a30ed3025e3b4c74e8507f2081042b5c, type: 3}
+  - {fileID: 2790727323690523245, guid: 6bcbff2a1cf44f8428c11e0f66613421, type: 3}
+  - {fileID: 7337978151360012701, guid: bc77876acdc85f845bc750ca8914d988, type: 3}
+  scoreGoals: e8030000b004000014050000
+  endGameRequirements:
+    gameType: 1
+    counterValue: 90
+  levelGoals:
+  - numberNeeded: 15
+    numberCollected: 15
+    goalSprite: {fileID: -6099873399732076034, guid: 3f3e984fedc33744d846f0f887712f29, type: 3}
+    matchValue: Green Dot
+    pointsPerGoal: 0
+  - numberNeeded: 15
+    numberCollected: 15
+    goalSprite: {fileID: -6920274672158514710, guid: 8d971b700573f534e98855888560e486, type: 3}
+    matchValue: Pink Dot
+    pointsPerGoal: 0
