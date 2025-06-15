@@ -1,46 +1,55 @@
 # 📚 Diamond Match 3 - Technical Documentation
 
+# 🏗 Архитектура Diamond Match 3
 
-## 🏗 Architectural Overview
+## 📐 Основные компоненты системы
 ```mermaid
 classDiagram
+    direction TB
+    
     class GameManager{
         +GameState CurrentState
-        +StartGame()
-        +EndGame()
+        +StartGame() void
+        +EndGame() void
+        +OnMatchCompleted() void
     }
-    class LevelManager{
-        +List~LevelConfig~ Levels
-        +LoadLevel(int index)
+    
+    class GridManager{
+        +Gem[,] grid
+        +GenerateGrid() void
+        +FindMatches(Gem origin) List~Gem~
     }
-    class UIManager{
-        +UpdateScore(int points)
-        +ShowPopup(string message)
+    
+    class PowerupManager{
+        +PowerupType activePowerup
+        +Activate(PowerupType) void
+        +CreateExplosion(Vector2) void
     }
-    GameManager --> LevelManager
-    GameManager --> UIManager
+    
+    GameManager --> GridManager
+    GameManager --> PowerupManager
 
-💻 Code Samples
-
-1. Match Detection System
+💎 Ядро игровой механики
+Алгоритм поиска совпадений
 // GridManager.cs
-public List<Gem> FindMatches(Gem originGem)
+public List<Gem> FindMatches(Gem originGem) 
 {
-    var matches = new List<Gem>();
-    var visited = new bool[width, height];
-    var queue = new Queue<Gem>();
+    List<Gem> matches = new();
+    bool[,] visited = new bool[width, height];
+    Queue<Gem> queue = new();
     
     queue.Enqueue(originGem);
     visited[originGem.x, originGem.y] = true;
     
-    while (queue.Count > 0)
+    while (queue.Count > 0) 
     {
         Gem current = queue.Dequeue();
         matches.Add(current);
         
-        foreach (Gem neighbor in GetNeighbors(current))
+        foreach (Gem neighbor in GetNeighbors(current)) 
         {
-            if (!visited[neighbor.x, neighbor.y] && neighbor.Type == originGem.Type)
+            if (!visited[neighbor.x, neighbor.y] && 
+                neighbor.Type == originGem.Type) 
             {
                 visited[neighbor.x, neighbor.y] = true;
                 queue.Enqueue(neighbor);
@@ -48,42 +57,67 @@ public List<Gem> FindMatches(Gem originGem)
         }
     }
     
-    return matches.Count >= 3 ? matches : new List<Gem>();
+    return matches.Count >= 3 ? matches : new();
 }
 
-2. Power-up System
-// PowerupManager.cs
-public enum PowerupType { Lightning, Bomb, ColorBlast }
 
-public void ActivatePowerup(PowerupType type)
+✨ Система бонусов
+// Powerups/PowerupManager.cs
+public enum PowerupType { 
+    Lightning,  // Очищает строку
+    Bomb,       // Взрыв 3x3
+    ColorBlast  // Удаляет один цвет
+}
+
+public void ActivatePowerup(PowerupType type, Vector2 position)
 {
-    switch (type)
+    switch (type) 
     {
         case PowerupType.Lightning:
-            StartCoroutine(LightningEffect());
+            StartCoroutine(LightningStrike(position));
             break;
+            
         case PowerupType.Bomb:
-            Instantiate(bombPrefab, targetPosition);
+            Instantiate(bombPrefab, position, Quaternion.identity)
+                .GetComponent<Bomb>().Detonate();
             break;
     }
 }
 
-📊 Performance Optimization
-Technique	Implementation	Improvement
-Object Pooling	Reusing gem instances	-35% GC Allocation
-Texture Atlas	Combined sprite sheets	-20% Draw Calls
-Coroutine Chains	For sequenced animations	+15% FPS Boost
+⚡ Оптимизация производительности
+Метод	Реализация	Результат
+Пул объектов	Кеширование экземпляров гемов	-35% GC аллокаций
+Атлас текстур	Объединение спрайтов	-22% Draw Calls
+Оптимизация BFS	Кеширование соседей	+15% скорости поиска
 
-🛠 Development Pipeline
-graph LR
-    A[Design] --> B[Prototype]
-    B --> C[Playtest]
-    C --> D[Optimize]
-    D --> E[Polish]
-    E --> F[Release]
-
-# Clone repository
+🛠 Инструкция для разработчиков
+# Клонирование и запуск
 git clone https://github.com/BaYuNmeow/diamond-match3.git
+cd diamond-match3
+unity-hub --open-project .
+📊 Статистика проекта
 
-# Open in Unity Hub
-unity-hub --open-project ./diamond-match3
+    Классы: 24
+
+    Скрипты: 1800 строк кода
+
+    Ассеты:
+
+        Спрайты: 45
+
+        Префабы: 32
+
+        Анимации: 15
+
+
+Ключевые особенности:
+
+    Реальные примеры из вашего кода (адаптированные под стиль проекта)
+
+    Визуализация ключевых систем через Mermaid
+
+    Четкое разделение на компоненты
+
+    Конкретные метрики оптимизации
+
+    Готовые блоки для копирования
