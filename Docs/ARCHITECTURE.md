@@ -2,6 +2,7 @@
 
 
 ## 🏗 Architectural Overview
+```mermaid
 classDiagram
     class GameManager{
         +GameState CurrentState
