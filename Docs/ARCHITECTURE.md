@@ -23,10 +23,8 @@ classDiagram
         +Activate(PowerupType) void
         +CreateExplosion(Vector2) void
     }
-    
     GameManager --> GridManager
     GameManager --> PowerupManager
-
 💎 Ядро игровой механики
 Алгоритм поиска совпадений
 // GridManager.cs
@@ -57,7 +55,6 @@ public List<Gem> FindMatches(Gem originGem)
     
     return matches.Count >= 3 ? matches : new();
 }
-
 ✨ Система бонусов
 // Powerups/PowerupManager.cs
 public enum PowerupType { 
@@ -80,7 +77,6 @@ public void ActivatePowerup(PowerupType type, Vector2 position)
             break;
     }
 }
-
 ⚡ Оптимизация производительности
 Метод	Реализация	Результат
 Пул объектов	Кеширование экземпляров гемов	-35% GC аллокаций
@@ -94,7 +90,6 @@ bash
 git clone https://github.com/BaYuNmeow/diamond-match3.git
 cd diamond-match3
 unity-hub --open-project .
-
 📊 Статистика проекта
 
     Классы: 24
