@@ -50,13 +50,7 @@ sequenceDiagram
 
 2.2 🧬 Генерация уровней
 
-[Serializable]
-public class LevelData {
-    public int levelNumber;
-    public TileType[] availableTiles;
-    public int moveLimit;
-    public int targetScore;
-}
+<pre> ```csharp [Serializable] public class LevelData { public int levelNumber; public TileType[] availableTiles; public int moveLimit; public int targetScore; } ``` </pre>
 
 3. ⚙️ Оптимизация
 3.1 ♻️ Пулинг объектов
