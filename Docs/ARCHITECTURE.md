@@ -1,11 +1,7 @@
 # 📚 Diamond Match 3 - Technical Documentation
 
-<div align="center">
-  <img src="Docs/SCREENSHOTS/tech_banner.png" width="800">
-</div>
 
 ## 🏗 Architectural Overview
-```mermaid
 classDiagram
     class GameManager{
         +GameState CurrentState
